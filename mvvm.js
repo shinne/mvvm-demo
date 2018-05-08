@@ -40,7 +40,7 @@ function Observe(data) {
         Object.defineProperty(data,key,{
             configurable:true,
             get(){
-                //todo Dep.target与Watch的构造方法，是为了低耦合
+                //todo Dep.target与Watch的构造方法，是为了低耦合?
                 Dep.target && dep.addSub(Dep.target); //将watcher添加到订阅事件中[watcher]
                 return val;
             },
@@ -77,6 +77,7 @@ function Compile(el,vm) {
     //todo while这个循环是怎么运行的？
     //while这个循环是怎么运行的？
     while(child = vm.$el.firstChild){
+        //todo appendChild之后，vm.$el.firstChild会自动移除
         fragment.appendChild(child);
     }
 
