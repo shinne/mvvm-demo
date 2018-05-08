@@ -40,6 +40,7 @@ function Observe(data) {
         Object.defineProperty(data,key,{
             configurable:true,
             get(){
+                //todo Dep.target与Watch的构造方法，是为了低耦合
                 Dep.target && dep.addSub(Dep.target); //将watcher添加到订阅事件中[watcher]
                 return val;
             },
@@ -122,9 +123,6 @@ function Compile(el,vm) {
                         vm[exp] = newVal;
                     })
                 });
-                if(node.childNodes && node.childNodes.length){
-                    replace(node);
-                }
             }
             if (node.childNodes && node.childNodes.length) {
                 replace(node);
