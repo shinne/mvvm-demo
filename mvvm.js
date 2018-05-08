@@ -74,7 +74,7 @@ function Compile(el,vm) {
     //在el防卫里将内容都拿到，当然不能一个一个的拿
     //可以选择一道内存去然后放入文档碎片中，节省开销
     let fragment = document.createDocumentFragment();
-    //todo 此时将el中的内容放入内存中
+    //todo while这个循环是怎么运行的？
     //while这个循环是怎么运行的？
     while(child = vm.$el.firstChild){
         fragment.appendChild(child);
@@ -107,7 +107,7 @@ function Compile(el,vm) {
                 let nodeAttr = node.attributes; //获取dom上的所有属性，是个类数组
                 Array.from(nodeAttr).forEach(attr => {
                     let name = attr.name;   //v-model type
-                    let exp = attr.value   //    c   text
+                    let exp = attr.value;   //    c   text
                     if(name.includes('v-')){
                         node.value = vm[exp];   //this.c
                     }
