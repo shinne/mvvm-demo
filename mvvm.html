@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<!--
+    <script src="definePropertyDemo.js"></script>
+-->
+    <script src="mvvm.js"></script>
+    <title>MVVM原理实践</title>
+</head>
+<body>
+    <h4>在微信公众号-"奇舞周刊"里看到一篇解析MVVM的文章，讲的特别好，于是整合文章中的代码撸了一遍</h4>
+    <button id="changeTheme">点击我更改mvvm的data属性,可以更改主打歌</button>
+    <div id="app">
+        <label for="">{{inputValue}}</label><br><input v-model="inputValue" type="text">
+        <h1>{{song}}</h1>
+        <p>《{{album.name}}》是{{singer}}2005年11月发行的专辑</p>
+        <p>主打歌为{{album.theme}}</p>
+        <p>作词人为{{singer}}等人。</p>
+        为你弹奏肖邦的{{album.theme}}
+    </div>
+    <!--实现的mvvm-->
+    <script>
+        // 写法和Vue一样
+        let mvvm = new Mvvm({ el: '#app', data: { // Object.defineProperty(obj, 'song', '发如雪');
+                song: '发如雪',
+                album: {
+                    name: '十一月的萧邦',
+                    theme: '夜曲'
+                },
+                singer: '周杰伦',
+                inputValue:'我是一个绑定的数据'
+            }
+        });
+
+        var btn = document.getElementById("changeTheme");
+        btn.onclick = function () {
+            mvvm.album.theme = "一路向北";
+        }
+    </script>
+</body>
+</html>
